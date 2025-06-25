@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -41,6 +40,31 @@ const opportunityData = [
   { name: 'New Market Entry', value: 25, color: '#10b981' },
   { name: 'Partnership Deals', value: 20, color: '#f59e0b' },
   { name: 'Cost Optimization', value: 20, color: '#8b5cf6' },
+];
+
+const customerSentimentData = [
+  { month: 'Jan', sentiment: 72, satisfaction: 68 },
+  { month: 'Feb', sentiment: 75, satisfaction: 71 },
+  { month: 'Mar', sentiment: 78, satisfaction: 76 },
+  { month: 'Apr', sentiment: 82, satisfaction: 79 },
+  { month: 'May', sentiment: 85, satisfaction: 82 },
+  { month: 'Jun', sentiment: 88, satisfaction: 85 },
+];
+
+const employeeSentimentData = [
+  { month: 'Jan', engagement: 78, satisfaction: 75, retention: 92 },
+  { month: 'Feb', engagement: 80, satisfaction: 77, retention: 94 },
+  { month: 'Mar', engagement: 82, satisfaction: 80, retention: 93 },
+  { month: 'Apr', engagement: 85, satisfaction: 83, retention: 95 },
+  { month: 'May', engagement: 87, satisfaction: 85, retention: 96 },
+  { month: 'Jun', engagement: 90, satisfaction: 88, retention: 97 },
+];
+
+const executiveSentimentData = [
+  { quarter: 'Q1', confidence: 82, alignment: 85, performance: 88 },
+  { quarter: 'Q2', confidence: 85, alignment: 88, performance: 90 },
+  { quarter: 'Q3', confidence: 88, alignment: 90, performance: 92 },
+  { quarter: 'Q4', confidence: 90, alignment: 92, performance: 94 },
 ];
 
 const Index = () => {
@@ -292,6 +316,299 @@ const Index = () => {
             </Card>
 
           </div>
+
+          {/* New Row - Customer Sentiment Analysis */}
+          <Card className="p-6 bg-white shadow-lg border-0 hover:shadow-xl transition-shadow duration-300">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-slate-900 flex items-center">
+                <Users className="w-5 h-5 mr-2 text-blue-600" />
+                Customer Sentiment Analysis
+              </h2>
+              <div className="flex items-center space-x-2">
+                <Badge className="bg-green-100 text-green-800">+12% This Quarter</Badge>
+                <TrendingUp className="w-4 h-4 text-green-600" />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-12 gap-6">
+              {/* Customer Metrics - Left Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-blue-600 font-medium">Overall Sentiment</p>
+                        <p className="text-2xl font-bold text-blue-900">88%</p>
+                      </div>
+                      <TrendingUp className="w-8 h-8 text-blue-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-green-600 font-medium">Satisfaction Score</p>
+                        <p className="text-2xl font-bold text-green-900">85%</p>
+                      </div>
+                      <CheckCircle className="w-8 h-8 text-green-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-amber-600 font-medium">Response Rate</p>
+                        <p className="text-2xl font-bold text-amber-900">76%</p>
+                      </div>
+                      <Activity className="w-8 h-8 text-amber-600" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Customer Sentiment Chart - Center */}
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="text-sm font-medium text-slate-700 mb-3">Customer Sentiment Trends</h3>
+                <div className="h-48">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={customerSentimentData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                      <XAxis dataKey="month" axisLine={false} tickLine={false} fontSize={12} />
+                      <YAxis axisLine={false} tickLine={false} fontSize={12} />
+                      <Line type="monotone" dataKey="sentiment" stroke="#3b82f6" strokeWidth={3} dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }} />
+                      <Line type="monotone" dataKey="satisfaction" stroke="#10b981" strokeWidth={2} dot={{ fill: '#10b981', strokeWidth: 2, r: 3 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Customer Insights - Right Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <h3 className="text-sm font-medium text-slate-700 mb-4">Key Insights</h3>
+                <div className="space-y-3">
+                  <div className="p-3 bg-green-50 rounded-lg border border-green-100">
+                    <div className="flex items-center mb-2">
+                      <TrendingUp className="w-4 h-4 text-green-600 mr-2" />
+                      <span className="text-sm font-medium text-green-900">Positive Trend</span>
+                    </div>
+                    <p className="text-xs text-green-800">"Product quality feedback improved 15% this quarter"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <div className="flex items-center mb-2">
+                      <Brain className="w-4 h-4 text-blue-600 mr-2" />
+                      <span className="text-sm font-medium text-blue-900">AI Insight</span>
+                    </div>
+                    <p className="text-xs text-blue-800">"Customer calls mention faster support response times"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-amber-50 rounded-lg border border-amber-100">
+                    <div className="flex items-center mb-2">
+                      <AlertTriangle className="w-4 h-4 text-amber-600 mr-2" />
+                      <span className="text-sm font-medium text-amber-900">Watch Area</span>
+                    </div>
+                    <p className="text-xs text-amber-800">"Pricing concerns mentioned in 8% of feedback"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* New Row - Employee Sentiment Analysis */}
+          <Card className="p-6 bg-white shadow-lg border-0 hover:shadow-xl transition-shadow duration-300">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-slate-900 flex items-center">
+                <Users className="w-5 h-5 mr-2 text-purple-600" />
+                Employee Sentiment Analysis
+              </h2>
+              <div className="flex items-center space-x-2">
+                <Badge className="bg-purple-100 text-purple-800">+8% This Quarter</Badge>
+                <TrendingUp className="w-4 h-4 text-purple-600" />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-12 gap-6">
+              {/* Employee Metrics - Left Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-purple-600 font-medium">Engagement</p>
+                        <p className="text-2xl font-bold text-purple-900">90%</p>
+                      </div>
+                      <TrendingUp className="w-8 h-8 text-purple-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-indigo-600 font-medium">Satisfaction</p>
+                        <p className="text-2xl font-bold text-indigo-900">88%</p>
+                      </div>
+                      <CheckCircle className="w-8 h-8 text-indigo-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-teal-600 font-medium">Retention Rate</p>
+                        <p className="text-2xl font-bold text-teal-900">97%</p>
+                      </div>
+                      <Activity className="w-8 h-8 text-teal-600" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Employee Sentiment Chart - Center */}
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="text-sm font-medium text-slate-700 mb-3">Employee Engagement Trends</h3>
+                <div className="h-48">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={employeeSentimentData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                      <XAxis dataKey="month" axisLine={false} tickLine={false} fontSize={12} />
+                      <YAxis axisLine={false} tickLine={false} fontSize={12} />
+                      <Line type="monotone" dataKey="engagement" stroke="#8b5cf6" strokeWidth={3} dot={{ fill: '#8b5cf6', strokeWidth: 2, r: 4 }} />
+                      <Line type="monotone" dataKey="satisfaction" stroke="#6366f1" strokeWidth={2} dot={{ fill: '#6366f1', strokeWidth: 2, r: 3 }} />
+                      <Line type="monotone" dataKey="retention" stroke="#14b8a6" strokeWidth={2} strokeDasharray="5 5" dot={{ fill: '#14b8a6', strokeWidth: 2, r: 3 }} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Employee Insights - Right Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <h3 className="text-sm font-medium text-slate-700 mb-4">Key Insights</h3>
+                <div className="space-y-3">
+                  <div className="p-3 bg-purple-50 rounded-lg border border-purple-100">
+                    <div className="flex items-center mb-2">
+                      <TrendingUp className="w-4 h-4 text-purple-600 mr-2" />
+                      <span className="text-sm font-medium text-purple-900">Strong Growth</span>
+                    </div>
+                    <p className="text-xs text-purple-800">"Work-life balance initiatives showing positive impact"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-indigo-50 rounded-lg border border-indigo-100">
+                    <div className="flex items-center mb-2">
+                      <Brain className="w-4 h-4 text-indigo-600 mr-2" />
+                      <span className="text-sm font-medium text-indigo-900">AI Insight</span>
+                    </div>
+                    <p className="text-xs text-indigo-800">"Team emails show increased collaboration mentions"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-green-50 rounded-lg border border-green-100">
+                    <div className="flex items-center mb-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <span className="text-sm font-medium text-green-900">Achievement</span>
+                    </div>
+                    <p className="text-xs text-green-800">"Highest retention rate in company history"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* New Row - Executive Team Analysis */}
+          <Card className="p-6 bg-white shadow-lg border-0 hover:shadow-xl transition-shadow duration-300">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-semibold text-slate-900 flex items-center">
+                <Target className="w-5 h-5 mr-2 text-orange-600" />
+                Executive Team Analysis
+              </h2>
+              <div className="flex items-center space-x-2">
+                <Badge className="bg-orange-100 text-orange-800">+6% This Quarter</Badge>
+                <TrendingUp className="w-4 h-4 text-orange-600" />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-12 gap-6">
+              {/* Executive Metrics - Left Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-orange-600 font-medium">Leadership Confidence</p>
+                        <p className="text-2xl font-bold text-orange-900">90%</p>
+                      </div>
+                      <TrendingUp className="w-8 h-8 text-orange-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-red-600 font-medium">Strategic Alignment</p>
+                        <p className="text-2xl font-bold text-red-900">92%</p>
+                      </div>
+                      <CheckCircle className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-pink-600 font-medium">Performance Score</p>
+                        <p className="text-2xl font-bold text-pink-900">94%</p>
+                      </div>
+                      <Activity className="w-8 h-8 text-pink-600" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Executive Team Chart - Center */}
+              <div className="col-span-12 lg:col-span-6">
+                <h3 className="text-sm font-medium text-slate-700 mb-3">Executive Performance Trends</h3>
+                <div className="h-48">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={executiveSentimentData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                      <XAxis dataKey="quarter" axisLine={false} tickLine={false} fontSize={12} />
+                      <YAxis axisLine={false} tickLine={false} fontSize={12} />
+                      <Bar dataKey="confidence" fill="#f97316" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="alignment" fill="#dc2626" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="performance" fill="#ec4899" radius={[4, 4, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              {/* Executive Insights - Right Side */}
+              <div className="col-span-12 lg:col-span-3">
+                <h3 className="text-sm font-medium text-slate-700 mb-4">Leadership Insights</h3>
+                <div className="space-y-3">
+                  <div className="p-3 bg-orange-50 rounded-lg border border-orange-100">
+                    <div className="flex items-center mb-2">
+                      <TrendingUp className="w-4 h-4 text-orange-600 mr-2" />
+                      <span className="text-sm font-medium text-orange-900">Strong Leadership</span>
+                    </div>
+                    <p className="text-xs text-orange-800">"Executive team shows consistent growth in all metrics"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-red-50 rounded-lg border border-red-100">
+                    <div className="flex items-center mb-2">
+                      <Brain className="w-4 h-4 text-red-600 mr-2" />
+                      <span className="text-sm font-medium text-red-900">Strategic Focus</span>
+                    </div>
+                    <p className="text-xs text-red-800">"Meeting transcripts show increased strategic alignment"</p>
+                  </div>
+                  
+                  <div className="p-3 bg-pink-50 rounded-lg border border-pink-100">
+                    <div className="flex items-center mb-2">
+                      <Target className="w-4 h-4 text-pink-600 mr-2" />
+                      <span className="text-sm font-medium text-pink-900">Goal Achievement</span>
+                    </div>
+                    <p className="text-xs text-pink-800">"94% of quarterly objectives met or exceeded"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
 
           {/* Bottom Row - Future Opportunities */}
           <Card className="p-6 bg-white shadow-lg border-0 hover:shadow-xl transition-shadow duration-300">
